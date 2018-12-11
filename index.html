@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+</head>
+<body>
+  <button id="refresh">refresh element</button>
+  <div id="root"></div>
+</body>
+<script src="./virtualDom.js"></script>
+<script>
+  var elem = Element({
+    tagName: 'ul',
+    props: { class: 'list' },
+    children: [
+      Element({
+        tagName: 'li', children: ['item1']
+      }),
+      Element({
+        tagName: 'li', children: ['item2']
+      })
+    ]
+  });
+
+  var newElem = Element({
+    tagName: 'ul',
+    props: { class: 'list' },
+    children: [
+      Element({
+        tagName: 'li', children: ['item1']
+      }),
+      Element({
+        tagName: 'li', children: ['item3']
+      }),
+    ]
+  });
+
+  var $root = document.querySelector('#root');
+  var $refresh = document.querySelector('#refresh');
+
+  updateElement($root, elem);
+  
+  $refresh.addEventListener('click', function() {
+    updateElement($root, newElem, elem);
+  });
+
+  
+</script>
+</html>
